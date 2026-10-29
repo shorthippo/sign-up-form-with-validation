@@ -1,8 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
 import {
-  Alert,
-  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -56,14 +55,14 @@ export default function SignupScreen() {
     },
   });
 
-  function onSubmit({ password, confirmPassword, ...safe }: SignupFormData) {
-    console.log("onSubmit fired", safe);
-    const msg = JSON.stringify(safe, null, 2);
-    if (Platform.OS === "web") {
-      window.alert(msg);
-    } else {
-      Alert.alert("Valid", msg);
-    }
+  const router = useRouter();
+
+  function onSubmit(data: SignupFormData) {
+    console.log("Signed up:", data.firstName, data.lastName, data.email);
+    router.push({
+      pathname: "/confirmation",
+      params: { firstName: data.firstName },
+    });
   }
 
   return (
