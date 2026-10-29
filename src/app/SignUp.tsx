@@ -6,8 +6,9 @@ import {
     Pressable,
     ScrollView,
     StyleSheet,
-    Text
+    Text,
 } from "react-native";
+import { z } from "zod";
 
 const signupSchema = z
   .object({
@@ -18,9 +19,14 @@ const signupSchema = z
       .max(30, "Too many characters entered"),
     lastName: z
       .string()
-      .trim.min(2, "Last name required")
+      .trim()
+      .min(2, "Last name required")
       .max(30, "Too many characters entered"),
-    email: z.email.trim("Please enter a valid email"),
+    email: z
+      .string()
+      .trim()
+      .min(1, "Email is required")
+      .email("Please enter valid Email address"),
     password: z.string().min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string().min(1, "Please confirm your password"),
   })
@@ -28,6 +34,8 @@ const signupSchema = z
     message: "Passwords don't match",
     path: ["confirmPassword"],
   });
+
+type SignupFormData = z.infer<typeof signupSchema>;
 
 export default function SignupScreen() {
   const { control, handleSubmit, reset } = useForm<SignupFormData>({
@@ -63,29 +71,6 @@ export default function SignupScreen() {
       <Text style={styles.subtitle}>
         Please fill in the form to create an account
       </Text>
-      <Field
-        control={control}
-        name="firstName"
-        placeholder="Enter your First Name"
-      />
-      <Field
-        control={control}
-        name="lastName"
-        placeholder="Enter your Last Name"
-      />
-      <Field
-        control={control}
-        name="email"
-        placeholder="Enter your Email"
-        email
-      />
-      <Field control={control} name="password" placeholder="Password" secure />
-      <Field
-        control={control}
-        name="confirmPassword"
-        placeholder="Confirm Password"
-        secure
-      />
       <Pressable style={styles.button} onPress={handleSubmit(onSubmit)}>
         <Text style={styles.buttonText}> Sign Up</Text>
       </Pressable>
