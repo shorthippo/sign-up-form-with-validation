@@ -60,7 +60,7 @@ export default function SignupScreen() {
   function onSubmit(data: SignupFormData) {
     console.log("Signed up:", data.firstName, data.lastName, data.email);
     router.push({
-      pathname: "/confirmation",
+      pathname: "/confirmations",
       params: { firstName: data.firstName },
     });
   }
@@ -194,4 +194,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
   },
+  buttonText: {},
 });

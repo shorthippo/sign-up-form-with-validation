@@ -1,8 +1,11 @@
-import { useLocalSearchParams } from "expo-router"
-import {text, View, StyleSheet} from "react-native"
+import { useLocalSearchParams } from "expo-router";
+import { Text, View } from "react-native";
 
-export default function ConfirmationScreen {
-    const {
-        firstName = useLocalSearchParams();
-    }
+export default function ConfirmationScreen() {
+  const { firstName } = useLocalSearchParams();
+  return (
+    <View>
+      <Text>Account created for {firstName}!</Text>
+    </View>
+  );
 }
