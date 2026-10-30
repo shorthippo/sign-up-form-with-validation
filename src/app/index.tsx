@@ -70,11 +70,13 @@ export default function SignupScreen() {
       contentContainerStyle={styles.container}
       keyboardShouldPersistTaps="handled"
     >
-      <Text>Create Account</Text>
-      <Text>Please fill in the form to create an account</Text>
+      <Text style={styles.header}>Create Account</Text>
+      <Text style={styles.prompt}>
+        Please fill in the form to create an account
+      </Text>
 
       <View>
-        <Text>First Name</Text>
+        <Text style={styles.fieldHeaders}>First Name</Text>
         <Controller
           control={control}
           name="firstName"
@@ -92,7 +94,7 @@ export default function SignupScreen() {
       </View>
 
       <View>
-        <Text>Last Name</Text>
+        <Text style={styles.fieldHeaders}>Last Name</Text>
         <Controller
           control={control}
           name="lastName"
@@ -110,7 +112,7 @@ export default function SignupScreen() {
       </View>
 
       <View>
-        <Text>Email</Text>
+        <Text style={styles.fieldHeaders}>Email</Text>
         <Controller
           control={control}
           name="email"
@@ -130,7 +132,7 @@ export default function SignupScreen() {
       </View>
 
       <View>
-        <Text>Password</Text>
+        <Text style={styles.fieldHeaders}>Password</Text>
         <Controller
           control={control}
           name="password"
@@ -149,7 +151,7 @@ export default function SignupScreen() {
       </View>
 
       <View>
-        <Text>Confirm Password</Text>
+        <Text style={styles.fieldHeaders}>Confirm Password</Text>
         <Controller
           control={control}
           name="confirmPassword"
@@ -170,7 +172,7 @@ export default function SignupScreen() {
       </View>
 
       <Pressable style={styles.button} onPress={() => handleSubmit(onSubmit)()}>
-        <Text>Sign Up</Text>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>
     </ScrollView>
   );
@@ -180,19 +182,51 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: "center",
-    padding: 20,
-    backgroundColor: "#f5f5f5",
+    padding: 30,
+    gap: 15,
+    backgroundColor: "#def5ec",
   },
+  header: {
+    textAlign: "center",
+    color: "#1e5b42",
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: "Times New Roman",
+  },
+
+  prompt: {
+    textAlign: "center",
+    color: "#1e5b42",
+    fontFamily: "Times New Roman",
+  },
+
+  fieldHeaders: {
+    marginBottom: 5,
+    paddingLeft: 5,
+    fontFamily: "Times New Roman",
+    color: "#1e5b42",
+  },
+
   input: {
     borderWidth: 1,
-    borderColor: "#000000",
+    borderColor: "#257454",
+    borderRadius: 8,
+    padding: 8,
+    fontFamily: "Times New Roman",
+    color: "#26614844",
+    backgroundColor: "#e5faf2",
   },
+
   button: {
     backgroundColor: "#489476",
     padding: 14,
     borderRadius: 8,
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 30,
   },
-  buttonText: {},
+
+  buttonText: {
+    color: "#B5F5DD",
+    fontFamily: "Times New Roman",
+  },
 });
